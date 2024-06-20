@@ -139,9 +139,10 @@ if(MINGW)
     if(NOT CMAKE_RC_COMPILER)
         set(CMAKE_RC_COMPILER windres.exe)
     endif()
+    string(REPLACE " " ";" ZLIB_RC_COMPILER_LIST ${CMAKE_RC_COMPILER})
 
     add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/zlib1rc.obj
-                       COMMAND ${CMAKE_RC_COMPILER} ${CMAKE_RC_FLAGS}
+                       COMMAND ${ZLIB_RC_COMPILER_LIST}
                             -D GCC_WINDRES
                             -I ${CMAKE_CURRENT_SOURCE_DIR}
                             -I ${CMAKE_CURRENT_BINARY_DIR}
